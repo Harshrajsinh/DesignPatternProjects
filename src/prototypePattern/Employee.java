@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by Harshraj on 06-04-2018.
  */
-public class Employee {
+public class Employee implements Cloneable {
 
     List<String> empList;
 
@@ -14,15 +14,27 @@ public class Employee {
         empList = new ArrayList<>();
     }
 
-    public List<String> getEmpLst(){
+    public Employee(List<String> empList){
+        this.empList = empList;
+    }
+
+
+    public List<String> getEmpList(){
         return empList;
     }
 
-    public List<String> loadData(List<String> empList){
+    public void loadData(){
         empList.add("Harsh");
         empList.add("Ruby");
-        return empList;
     }
 
-    
+    @Override
+    public Employee clone() throws CloneNotSupportedException {
+        List<String> tempList = new ArrayList<>();
+        for (String s: this.empList) {
+            tempList.add(s);
+        }
+        return new Employee(tempList);
+    }
+
 }
